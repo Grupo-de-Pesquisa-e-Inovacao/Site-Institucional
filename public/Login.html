@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Login</title>
+
+    <script src="./js/sessao.js"></script>
+
+</head>
+
+<body>
+
+    <div class="div_containerLogin">
+
+        <!-- Mensagem de erro para todos campos em branco -->
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
+
+        <div class="div_boxLogin">
+
+            <h2>Bem-Vindo!</h2>
+            <h5>Monitore a temperatura do seu aviário com precisão e aumente sua produtividade!</h5>
+
+            <form>
+                <!-- Login -->
+                <div class="div_campoLogin" id="div_campoEmailLogin">
+                    <input type="text" id="i_emailLogin" required autocomplete="off">
+                    <div class="textoInput">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span>Email</span>
+                    </div>
+                </div>
+
+                <!-- Senha -->
+                <div class="div_campoLogin" id="div_campoSenhaLogin">
+                    <button type="button" id="i_buttonEyeSenha" onclick="exibirSenha()" tabindex="-1">
+                        <div id="iconeEyes">
+                            <i class="fa fa-eye-slash" aria-hidden=" true" style="font-size: 18px;"></i>
+                        </div>
+                    </button>
+                    <input type="password" id="i_senhaLogin" required autocomplete="off">
+                    <div class="textoInput">
+                        <i class="fas fa-lock"></i>
+                        <span>Senha</span>
+                    </div>
+                </div>
+
+
+            </form>
+
+            <button class="botao_Login" onclick="validar()">Entrar</button>
+
+            <div id="div_aguardar" class="loading-div">
+                <img src="./Imagens/circle-loading.gif" id="loading-gif">
+            </div>
+            <div id="div_erros_login"></div>
+        </div>
+
+    </div>
+
+    <div id="banner">
+        <div id="card_info">
+            <h2>AviTrack</h2>
+            <p>Cadastre-se agora e tenha acesso a dashboards interativas e dados essenciais
+                para o controle e monitoramento de temperatura nos seus aviários.
+                Garanta o bem-estar das aves, aumente sua produtividade e tome decisões baseadas em dados reais!
+            </p>
+            <div class="botao_irCadastro">
+                <span>Ainda não possuí uma conta? <a href="Cadastro.html" tabindex="-1">Criar conta</a></span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function exibirSenha() {
+        // Fazendo a inversão do tipo do input ao clicar no icone de revelar senha
+        // Ao clicar no icone, inverte o tipo da input de password para text
+        if (i_senhaLogin.type == "password") {
+            i_senhaLogin.type = "text";
+            i_buttonEyeSenha.innerHTML = `<i class="fa fa-eye" aria-hidden="true" style="color: #fff45c"></i>`;
+        } else { // Ao clicar novamente, inverte de text para password
+            i_senhaLogin.type = "password";
+            i_buttonEyeSenha.innerHTML = `<i class="fa fa-eye-slash" aria-hidden=" true"style="font-size: 18px;"></i>`;
+        }
+    }
+
+    function validar() {
+        // Variáveis
+        var emailVar = i_emailLogin.value;
+        var senhaVar = i_senhaLogin.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos!";
+            // finalizarAguardar();
+            return false;
+        }
+        else {
+            // setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            // fetch faz requisições em outros arquivos; nesse caso, ele chama a função autenticar no arquivo usuarioController.js do diretório controllers para "puxar" valores para cá
+            // ele também envia (requisição, POST) os dados do login (email e senha) para usuario.js da pasta routes
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_PESSOA_JURIDICA = json.email;
+                    sessionStorage.RAZAO_PESSOA_JURIDICA = json.razao_social;
+                    sessionStorage.TELEFONE_PESSOA_JURIDICA = json.telefone_comercial;
+                    sessionStorage.CNPJ_PESSOA_JURIDICA = json.cnpj;
+                    sessionStorage.ID_PESSOA_JURIDICA = json.id;
+
+                
+                    window.location = "index.html";
+           
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+</script>
