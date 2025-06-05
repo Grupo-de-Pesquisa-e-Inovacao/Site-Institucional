@@ -28,7 +28,8 @@ body {
 .menuLateral {
     width: 18%;
     height: 100%;
-    background-color: #333;
+    background-color: var(--cinzaEscuro);
+    border-right: 1px solid var(--amarelo);
 
     display: flex;
     flex-direction: column;
@@ -97,6 +98,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    text-align: center;
 }
 
 #user_pontuacao,
@@ -128,6 +131,18 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#temperaturaAviario1,
+#temperaturaAviario2,
+#temperaturaAviario3 {
+    font-size: 35px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.indicadores h2 {
+    margin: 0;
 }
 
 

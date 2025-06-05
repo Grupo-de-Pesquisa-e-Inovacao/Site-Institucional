@@ -9,16 +9,20 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <script src="./js/dashboard.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script
         src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
     <title>Dashboard</title>
+
+
     <script src="./js/alerta.js"></script>
 </head>
 
-<body onload="validarSessao(),variacaoTemperatura()">
+<body onload="validarSessao(), buscarDadosSetor1(), buscarDadosSetor2(), buscarDadosSetor3()">
 
     <div class="menuLateral">
         <div id="textoPainel"></div>
@@ -33,19 +37,19 @@
 
             <div class="indicadores" id="indicador1">
                 <h2>Temperatura Atual no Aviário</h2>
-                <span id="temperaturaAviario1">17</span>
+                <span id="temperaturaAviario1"></span>
                 <a>O ideal é estar entre 21°C e 26°C</a>
             </div>
 
             <div class="indicadores" id="indicador2">
                 <h2>Temperatura Atual no Aviário</h2>
-                <span id="temperaturaAviario2">22</span>
+                <span id="temperaturaAviario2"></span>
                 <a>O ideal é estar entre 21°C e 26°C</a>
             </div>
 
             <div class="indicadores" id="indicador3">
                 <h2>Temperatura Atual no Aviário</h2>
-                <span id="temperaturaAviario3">28</span>
+                <span id="temperaturaAviario3"></span>
                 <a>O ideal é estar entre 21°C e 26°C</a>
             </div>
         </div>
@@ -69,288 +73,3 @@
 </body>
 
 </html>
-
-<script>
-    // Validação de Usuário
-    // sessão
-    function validarSessao() {
-        var email = sessionStorage.EMAIL_PESSOA_JURIDICA;
-        var nome = sessionStorage.RAZAO_PESSOA_JURIDICA;
-        var cnpj = sessionStorage.CNPJ_PESSOA_JURIDICA;
-
-        var b_usuario = document.getElementById("b_usuario");
-        var loginUsuario = document.getElementById("botaoLogin");
-        var botaoDashboard = document.getElementById("botaoDashboard");
-
-        var cnpj = document.getElementById("cnpj");
-
-
-        if (email != null && nome != null) {
-            b_usuario.innerHTML = `Olá, ${nome}!`;
-
-            document.getElementById('b_usuario').removeAttribute('href');
-            b_usuario.style.cursor = "default";
-            b_usuario.style.userSelect = "none";
-
-            // botaoDashboard.style.visibility = "visible";
-
-            // loginUsuario.style.display = "none";
-
-            console.log(`
-            Validou sessão com: \n
-            Nome: ${nome} \n
-            Email: ${email} \n
-            CNPJ: ${cnpj}
-            `)
-        } else {
-
-        }
-    }
-
-
-
-    function variacaoTemperatura() {
-        // if (
-        //     temperaturaAviario1 < 21 || temperaturaAviario2 < 21 || temperaturaAviario3 < 21 
-        //     || 
-        //     temperaturaAviario1 > 26 || temperaturaAviario2 > 26 || temperaturaAviario3 > 26
-        // ) {
-        //     temperaturaAviario1.style.color = "red"
-        //     temperaturaAviario2.style.color = "red"
-        //     temperaturaAviario3.style.color = "red"
-        // } else {
-        //     temperaturaAviario1.style.color = "green"
-        //     temperaturaAviario2.style.color = "green"
-        //     temperaturaAviario3.style.color = "green"
-        // }
-    }
-
-    
-    function buscarDadosEmTempoReal() {
-
-        var idUsuario = sessionStorage.getItem("ID_PESSOA_JURIDICA");
-
-        fetch("/dashboard/buscarDadosEmTempoReal", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                idServer: idUsuario
-            }),
-        }).then(function (resposta) {
-            // console.log("ESTOU NO THEN DO exibirMedia()!")
-
-            if (resposta.ok) {
-
-                resposta.json().then(function (resposta) {
-                    console.log(`\n == Função buscarDadosEmTempoReal() \nDados recebidos: ${JSON.stringify(resposta)}`)
-
-                    for (var i = 0; i < resposta.length; i++) {
-                        // temperatura = resposta[i].pontuacaoTotal
-                        console.log(resposta)
-
-                        // if (i == 0) {
-                        //     user_rank.innerHTML += `<p style="color: #FFD700; padding: 10px; margin: 0; font-size: 30px;"><i class="fa-solid fa-trophy"></i> ${rank} - ${pontuacaoTotal}</p> <br>`
-                        // }
-                        // else if (i == 1) {
-                        //     user_rank.innerHTML += `<p style="color: silver; padding: 10px; margin: 0; font-size: 30px;">2º ${rank} - ${pontuacaoTotal} </p><br>`
-                        // }
-                        // else if (i == 2) {
-                        //     user_rank.innerHTML += `<p style="color: #CD7F32; padding: 5px; margin: 0; font-size: 30px;">3º ${rank} - ${pontuacaoTotal}</p> <br>`
-                        // } else if (i < 10) {
-                        //     user_rank.innerHTML += `<p style="color: white; padding: 5px; margin: 0; font-size: 30px;">${i + 1}º ${rank} - ${pontuacaoTotal} <br></p>`
-                        // }
-                    }
-
-                })
-
-            } else {
-
-                console.log("Houve um erro ao tentar exibir a Temperatura Atual dos Aviários!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
-
-    cnpj.innerHTML = sessionStorage.CNPJ_PESSOA_JURIDICA;
-
-    // Gráfico de Linha: Temperatura Semanal
-    const labelsLinha = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
-
-    const dataLinha = {
-        labels: labelsLinha,
-        datasets: [
-            {
-                label: 'Temperatura',
-                data: [25, 37, 33, 25, 32, 20, 10],
-                borderColor: '#fff45c',
-                backgroundColor: '#fff',
-                yAxisID: 'y',
-                tension: 0.4,
-            }
-        ]
-    };
-
-    const configLinha = {
-        type: 'line',
-        data: dataLinha,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: 'white',
-                        font: {
-                            size: 13,
-                            family: 'Arial'
-                        },
-                        // boxWidth: 20
-                    }
-                },
-                title: {
-                    display: true,
-                    text: '',
-                    color: 'White',
-                    font: {
-                        size: 25
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#fff',
-                        font: {
-                            size: 15,
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Dias da Semana',
-                        color: 'white',
-                        font: {
-                            size: 15
-                        }
-                    }
-                },
-                y: {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    min: 0,
-                    max: 50,
-                    ticks: {
-                        stepSize: 10
-                    },
-                    ticks: {
-                        color: '#fff',
-                        font: {
-                            size: 15
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Graus Celsius',
-                        color: 'white',
-                        font: {
-                            size: 15
-                        }
-                    }
-                },
-            }
-        },
-    };
-
-    const GraficoLinha = new Chart(
-        document.getElementById('canvasTemperaturaSemanal'),
-        configLinha
-    );
-
-
-
-
-    // Gráfico de Doughnut: Porcentagem de tempo que a temperatura ficou ideal
-    const labelPizza = ['Tempo Dentro do Ideal', 'Tempo Fora do Ideal'];
-
-    const dataPizza = {
-        labels: [
-            'Tempo Dentro do Ideal',
-            'Tempo Fora do Ideal'
-        ],
-        datasets: [{
-            label: 'Porcentagem de Tempo',
-            data: [75, 25],
-            backgroundColor: ['#35ff35', '#ff2a2a'],
-            borderColor: ['#000', '#000'],
-            hoverOffset: 20
-        }]
-    };
-
-    const configPizza = {
-        type: 'doughnut',
-        data: dataPizza,
-        plugins: [ChartDataLabels],
-        options: {
-            cutout: 100,
-            responsive: true,
-            animation: {
-                animateScale: true
-            },
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
-            plugins: {
-                datalabels: {
-                    display: 'inside', // coloca o valor dentro
-                    formatter: (value, context) => {
-                        const sum = context.dataset.data.reduce((a, b) => a + b, 0);
-                        const percentage = (value / sum * 100).toFixed(1) + '%';
-                        return percentage;
-                    }, //formatacao para porcentagem
-                    color: 'black',
-
-                    font: {
-                        size: 30,
-                        weight: 'bold'
-                    }
-                },
-                legend: {
-                    labels: {
-                        color: 'white',
-                        font: {
-                            size: 25,
-                            family: 'Arial'
-                        },
-                        boxWidth: 20
-                    }
-                },
-                title: {
-                    display: true,
-                    text: 'Relatório Mensal de Temperatura Ideal',
-                    color: 'white',
-                    font: {
-                        size: 40,
-                    }
-                }
-            },
-        }
-    };
-
-    const GraficoPizza = new Chart(
-        document.getElementById('canvasPercentualTemperatura'),
-        configPizza
-    );
-
-</script>
