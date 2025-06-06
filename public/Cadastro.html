@@ -3,14 +3,20 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="./css/cadastro.css">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Cadastro</title>
+
+    <title>AviTrack | Cadastro</title>
 
     <script src="./js/sessao.js"></script>
+
+    <link rel="shortcut icon" href="../Imagens/logoGalinha.png" type="image/x-icon">
+
 </head>
 
 <body>
@@ -261,6 +267,49 @@
                         if (validarSenha() == true) {
                             // Validando se a senha digitada no campo de Senha é a mesma do campo de Confirmação de Senha
                             if (senhaCadastro == confirmacaoSenhaCadastro) {
+                                fetch("/usuarios/cadastrar", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        // crie um atributo que recebe o valor recuperado aqui
+                                        // Agora vá para o arquivo routes/usuario.js
+
+
+                                        cnpjServer: cnpjCadastro,
+                                        razaoSocialServer: razaoSocialCadastro,
+                                        telefoneServer: telefoneCadastro,
+                                        emailServer: emailCadastro,
+                                        senhaServer: senhaCadastro
+                                        // idEmpresaVincularServer: idEmpresaVincular
+                                    }),
+                                })
+                                    .then(function (resposta) {
+                                        console.log("resposta: ", resposta);
+
+                                        if (resposta.ok) {
+                                            // cardErro.style.display = "block";
+
+                                            // mensagem_erro.innerHTML =
+                                            //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                                            setTimeout(() => {
+                                                window.location = "Login.html";
+                                            }, "2000");
+
+                                            // limparFormulario();
+                                            // finalizarAguardar();
+                                        } else {
+                                            throw "Houve um erro ao tentar realizar o cadastro!";
+                                        }
+                                    })
+                                    .catch(function (resposta) {
+                                        // console.log(`#ERRO: ${resposta}`);
+                                        // finalizarAguardar();
+                                    });
+
+                                return false;
                                 // Redirecionando o usuário para a página inicial com um alerta de boas vindas
                                 alert(`Usuário cadastrado com sucesso! \n \nSeja bem-vindo ao AviTrack`);
                                 window.location.href = "login.html"
@@ -288,51 +337,6 @@
             // Caso algum dos campos esteja vazio
             alert(`Preencha todos os campos!`)
         }
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-
-
-                cnpjServer: cnpjCadastro,
-                razaoSocialServer: razaoSocialCadastro,
-                telefoneServer: telefoneCadastro,
-                emailServer: emailCadastro,
-                senhaServer: senhaCadastro
-                // idEmpresaVincularServer: idEmpresaVincular
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                    // cardErro.style.display = "block";
-
-                    // mensagem_erro.innerHTML =
-                    //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                    setTimeout(() => {
-                        window.location = "Login.html";
-                    }, "2000");
-
-                    // limparFormulario();
-                    // finalizarAguardar();
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                // console.log(`#ERRO: ${resposta}`);
-                // finalizarAguardar();
-            });
-
-        return false;
     }
 
 </script>

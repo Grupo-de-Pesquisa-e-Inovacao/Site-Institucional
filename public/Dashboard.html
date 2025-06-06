@@ -13,21 +13,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <link rel="shortcut icon" href="../Imagens/logoGalinha.png" type="image/x-icon">
 
-    <title>Dashboard</title>
+    <title>AviTrack | Dashboard</title>
 
 
     <script src="./js/alerta.js"></script>
 </head>
 
-<body onload="validarSessao(), buscarDadosSetor1(), buscarDadosSetor2(), buscarDadosSetor3()">
+<body onload="validarSessao(), buscarDadosSetor(), plotarDadosTemperaturaAviario()">
 
     <div class="menuLateral">
         <div id="textoPainel"></div>
         <a href="index.html" class="botao">Inicio</a>
         <a href="quiz.html" class="botao">Quiz</a>
+        <a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" class="botao">Suporte</a>
         <a class="botao" onclick="sairSessao()">Sair do Perfil</a>
     </div>
 
@@ -36,19 +36,19 @@
         <div id="box1">
 
             <div class="indicadores" id="indicador1">
-                <h2>Temperatura Atual no Aviário</h2>
+                <h2>Temperatura Atual no Setor 1</h2>
                 <span id="temperaturaAviario1"></span>
                 <a>O ideal é estar entre 21°C e 26°C</a>
             </div>
 
             <div class="indicadores" id="indicador2">
-                <h2>Temperatura Atual no Aviário</h2>
+                <h2>Temperatura Atual no Setor 2</h2>
                 <span id="temperaturaAviario2"></span>
                 <a>O ideal é estar entre 21°C e 26°C</a>
             </div>
 
             <div class="indicadores" id="indicador3">
-                <h2>Temperatura Atual no Aviário</h2>
+                <h2>Temperatura Atual no Setor 3</h2>
                 <span id="temperaturaAviario3"></span>
                 <a>O ideal é estar entre 21°C e 26°C</a>
             </div>

@@ -2,26 +2,19 @@ CREATE DATABASE avitrack;
 
 USE avitrack;
 
-drop database avitrack;
-
 CREATE TABLE pessoa_juridica (
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    cnpj CHAR(18) NOT NULL unique,
     razao_social VARCHAR(70) NOT NULL,
-    email_comercial VARCHAR(60) NOT NULL,
-    senha VARCHAR(30) NOT NULL,
-    telefone_comercial CHAR(19) NOT NULL,
-    cnpj CHAR(18) NOT NULL
+    telefone_comercial CHAR(19) NOT NULL unique,
+    email_comercial VARCHAR(60) NOT NULL unique,
+    senha VARCHAR(30) NOT NULL
 );
-
-select * from pessoa_juridica p
-join aviario a on a.fk_pessoa_juridica = p.id;
 
 
 CREATE TABLE aviario (
 	id INT PRIMARY KEY,
     nome VARCHAR(45) NOT NULL,
-    qtd_frangos INT NOT NULL,
-    qtd_frangos_mortos INT NOT NULL,
     cep CHAR(15) NOT NULL,
     logradouro VARCHAR(100) NOT NULL,
     numero VARCHAR(6) NOT NULL,
@@ -35,7 +28,7 @@ CREATE TABLE aviario (
 
 CREATE TABLE setor(
 	id INT,
-	nome VARCHAR(45),
+	nome VARCHAR(45) not null,
     fk_aviario INT,
     CONSTRAINT fkAviario FOREIGN KEY (fk_aviario)
 		REFERENCES aviario(id),
@@ -46,7 +39,7 @@ CREATE TABLE sensor (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     modelo VARCHAR(45),
     tipo_leitura VARCHAR(45),
-    num_serie VARCHAR(30),
+    num_serie VARCHAR(30) not null unique,
     fk_setor INT,
     CONSTRAINT fkSetor FOREIGN KEY (fk_setor)
 		REFERENCES setor(id),
@@ -170,7 +163,7 @@ select * from temperatura_celsius;
          WHEN mt.temperatura > 28 THEN 'Acima do ideal'
          ELSE 'Temperatura ideal'
  	END as Situação
-     FROM medicao_temperatura as mt
+     FROM temperatura_celsius as mt
      JOIN sensor
  		ON mt.fk_sensor = sensor.id
  	JOIN setor

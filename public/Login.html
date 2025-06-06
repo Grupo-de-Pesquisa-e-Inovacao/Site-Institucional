@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Login</title>
+
+    <title>AviTrack | Login</title>
+
+    <link rel="shortcut icon" href="../Imagens/logoGalinha.png" type="image/x-icon">
 
     <script src="./js/sessao.js"></script>
 
@@ -143,9 +146,13 @@
                     sessionStorage.CNPJ_PESSOA_JURIDICA = json.cnpj;
                     sessionStorage.ID_PESSOA_JURIDICA = json.id;
 
-                
-                    window.location = "index.html";
-           
+
+                    if (emailVar == 'n3@avitrack.com' && senhaVar == 'n3n3n3') {
+                        window.location = "indexBobIA.html"
+                    } else {
+                        window.location = "index.html";
+                    }
+
                 });
 
             } else {
