@@ -13,15 +13,13 @@
 
     <title>AviTrack | Cadastro</title>
 
-    <script src="./js/sessao.js"></script>
-
     <link rel="shortcut icon" href="../Imagens/logoGalinha.png" type="image/x-icon">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
-<body>
+<body onload="validarSessao()">
     <!-- Banner da esquerda com um card flutuante informativo -->
     <div id="banner">
         <div id="card_info">
@@ -134,6 +132,28 @@
 
 
 <script>
+
+    function validarSessao() {
+        var email = sessionStorage.EMAIL_PESSOA_JURIDICA;
+        var nome = sessionStorage.RAZAO_PESSOA_JURIDICA;
+        var cnpj = sessionStorage.CNPJ_PESSOA_JURIDICA;
+
+        var b_usuario = document.getElementById("b_usuario");
+        var loginUsuario = document.getElementById("botaoLogin");
+        var botaoDashboard = document.getElementById("botaoDashboard");
+
+        var cnpj = document.getElementById("cnpj");
+
+
+        if (email == null && nome == null) {
+
+        } else {
+            window.location = "index.html";
+        }
+    }
+
+
+
     function formatarCNPJ() { // Função para formatarCNPJ o campo de CNPJ
         // Formatando o CNPJ:
         // Variáveis

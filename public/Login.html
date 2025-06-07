@@ -13,13 +13,11 @@
 
     <link rel="shortcut icon" href="../Imagens/logoGalinha.png" type="image/x-icon">
 
-    <script src="./js/sessao.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
-<body>
+<body onload="validarSessao()">
 
     <div class="div_containerLogin">
 
@@ -79,6 +77,27 @@
 </html>
 
 <script>
+
+    function validarSessao() {
+        var email = sessionStorage.EMAIL_PESSOA_JURIDICA;
+        var nome = sessionStorage.RAZAO_PESSOA_JURIDICA;
+        var cnpj = sessionStorage.CNPJ_PESSOA_JURIDICA;
+
+        var b_usuario = document.getElementById("b_usuario");
+        var loginUsuario = document.getElementById("botaoLogin");
+        var botaoDashboard = document.getElementById("botaoDashboard");
+
+        var cnpj = document.getElementById("cnpj");
+
+
+        if (email == null && nome == null) {
+            
+        } else {
+            window.location = "index.html";
+        }
+    }
+
+
     function exibirSenha() {
         // Fazendo a inversão do tipo do input ao clicar no icone de revelar senha
         // Ao clicar no icone, inverte o tipo da input de password para text
