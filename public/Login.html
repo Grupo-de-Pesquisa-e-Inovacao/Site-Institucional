@@ -15,18 +15,13 @@
 
     <script src="./js/sessao.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
 
     <div class="div_containerLogin">
-
-        <!-- Mensagem de erro para todos campos em branco -->
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
-            </div>
-        </div>
 
         <div class="div_boxLogin">
 
@@ -61,11 +56,6 @@
             </form>
 
             <button class="botao_Login" onclick="validar()">Entrar</button>
-
-            <div id="div_aguardar" class="loading-div">
-                <img src="./Imagens/circle-loading.gif" id="loading-gif">
-            </div>
-            <div id="div_erros_login"></div>
         </div>
 
     </div>
@@ -107,22 +97,23 @@
         var senhaVar = i_senhaLogin.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Preencha todos os campos!";
-            // finalizarAguardar();
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Preencha todos os campos para efetuar o login!",
+                background: "#222",
+                color: '#fff',
+                confirmButtonColor: '#fff45c',
+                footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
+            });
+
             return false;
-        }
-        else {
-            // setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
         fetch("/usuarios/autenticar", {
-            // fetch faz requisições em outros arquivos; nesse caso, ele chama a função autenticar no arquivo usuarioController.js do diretório controllers para "puxar" valores para cá
-            // ele também envia (requisição, POST) os dados do login (email e senha) para usuario.js da pasta routes
-
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -157,11 +148,19 @@
 
             } else {
 
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Email e/ou Senha inválidos! Tente novamente...",
+                background: "#222",
+                color: '#fff',
+                footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5">Esta com problemas?</a>'
+            });
+
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
-                    console.error(texto);
-                    // finalizarAguardar(texto);
+
                 });
             }
 
