@@ -104,6 +104,9 @@
                 background: "#222",
                 color: '#fff',
                 confirmButtonColor: '#fff45c',
+                customClass: {
+                    confirmButton: 'meu-botao-confirmar'
+                },
                 footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
             });
 
@@ -141,7 +144,22 @@
                     if (emailVar == 'n3@avitrack.com' && senhaVar == 'n3n3n3') {
                         window.location = "indexBobIA.html"
                     } else {
-                        window.location = "index.html";
+                        Swal.fire({
+                            icon: "success",
+                            title: "Olá, bem-vindo!",
+                            text: "Monitore a temperatura em tempo real!",
+                            background: "#222",
+                            color: '#fff',
+                            confirmButtonText: 'Vamos lá!',
+                            confirmButtonColor: '#fff45c',
+                            customClass: {
+                                confirmButton: 'meu-botao-confirmar'
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location = "index.html";
+                            }
+                        });
                     }
 
                 });
@@ -154,6 +172,9 @@
                     background: "#222",
                     color: '#fff',
                     confirmButtonColor: '#fff45c',
+                    customClass: {
+                        confirmButton: 'meu-botao-confirmar'
+                    },
                     footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
                 });
 

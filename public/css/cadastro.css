@@ -44,7 +44,10 @@ body {
     z-index: 1;
 }
 
-
+/* Texto dos modais de erro e confirmação */
+.meu-botao-confirmar {
+    color: #222;
+}
 
 /* Div de informações flutuantes */
 #card_info {

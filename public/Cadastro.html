@@ -295,94 +295,115 @@
                                                 background: "#222",
                                                 color: '#fff',
                                                 confirmButtonText: 'Vamos lá!',
-                                                confirmButtonColor: '#fff45c'
+                                                confirmButtonColor: '#fff45c',
+                                                customClass: {
+                                                    confirmButton: 'meu-botao-confirmar'
+                                                }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
                                                     window.location = "Login.html";
-                                            }
-                                        });
+                                                }
+                                            });
+                                        } else {
+                                            throw "Houve um erro ao tentar realizar o cadastro!";
+                                        }
+                                    })
+                                    .catch(function (resposta) {
+
+                                    });
+
+                                return false;
+
                             } else {
-                                throw "Houve um erro ao tentar realizar o cadastro!";
+                                // Caso a senha inserida no campo Senha não seja a mesma do campo Confirmação de Senha
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Oops...",
+                                    text: "As senhas não coincidem!",
+                                    background: "#222",
+                                    color: '#fff',
+                                    confirmButtonColor: '#fff45c',
+                                    customClass: {
+                                        confirmButton: 'meu-botao-confirmar'
+                                    },
+                                    footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
+                                });
                             }
-                        })
-                                    .catch (function (resposta) {
-
-                        });
-
-                        return false;
-
+                        } else {
+                            // Caso a senha inserida não contenha o que é necessário
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Preencha a senha com os requisítos necessários!",
+                                background: "#222",
+                                color: '#fff',
+                                confirmButtonColor: '#fff45c',
+                                customClass: {
+                                    confirmButton: 'meu-botao-confirmar'
+                                },
+                                footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
+                            });
+                        }
                     } else {
-                        // Caso a senha inserida no campo Senha não seja a mesma do campo Confirmação de Senha
+                        // Caso o email não inclua `@` ou `.`
                         Swal.fire({
                             icon: "error",
                             title: "Oops...",
-                            text: "As senhas não coincidem!",
+                            text: "Email inválido!",
                             background: "#222",
                             color: '#fff',
                             confirmButtonColor: '#fff45c',
+                            customClass: {
+                                confirmButton: 'meu-botao-confirmar'
+                            },
                             footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
                         });
                     }
                 } else {
-                    // Caso a senha inserida não contenha o que é necessário
+                    // Caso o tamanho telefone inserido seja menor do que 19 caracteres
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "Preencha a senha com os requisítos necessários!",
+                        text: "Telefone inválido!",
                         background: "#222",
                         color: '#fff',
                         confirmButtonColor: '#fff45c',
+                        customClass: {
+                            confirmButton: 'meu-botao-confirmar'
+                        },
                         footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
                     });
                 }
             } else {
-                // Caso o email não inclua `@` ou `.`
+                // Caso o tamanho do CNPJ inserido seja menor do que 18 caracteres
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Email inválido!",
+                    text: "CNPJ inválido!",
                     background: "#222",
                     color: '#fff',
                     confirmButtonColor: '#fff45c',
+                    customClass: {
+                        confirmButton: 'meu-botao-confirmar'
+                    },
                     footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
                 });
             }
         } else {
-            // Caso o tamanho telefone inserido seja menor do que 19 caracteres
+            // Caso algum dos campos esteja vazio
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Telefone inválido!",
+                text: "Preencha todos os campos!",
                 background: "#222",
                 color: '#fff',
                 confirmButtonColor: '#fff45c',
+                customClass: {
+                    confirmButton: 'meu-botao-confirmar'
+                },
                 footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
             });
         }
-    } else {
-        // Caso o tamanho do CNPJ inserido seja menor do que 18 caracteres
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "CNPJ inválido!",
-            background: "#222",
-            color: '#fff',
-            confirmButtonColor: '#fff45c',
-            footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
-        });
-    }
-        } else {
-        // Caso algum dos campos esteja vazio
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Preencha todos os campos!",
-            background: "#222",
-            color: '#fff',
-            confirmButtonColor: '#fff45c',
-            footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
-        });
-    }
     }
 
 </script>
