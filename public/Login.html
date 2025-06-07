@@ -147,15 +147,15 @@
                 });
 
             } else {
-
                 Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Email e/ou Senha inválidos! Tente novamente...",
-                background: "#222",
-                color: '#fff',
-                footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5">Esta com problemas?</a>'
-            });
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Email e/ou Senha inválidos! Tente novamente...",
+                    background: "#222",
+                    color: '#fff',
+                    confirmButtonColor: '#fff45c',
+                    footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
+                });
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
