@@ -6,7 +6,7 @@ function validarSessao() {
 
     var b_usuario = document.getElementById("b_usuario");
     var loginUsuario = document.getElementById("botaoLogin");
-    var botaoDashboard = document.getElementById("botaoDashboard"); 
+    var botaoDashboard = document.getElementById("botaoDashboard");
 
     var cnpj = document.getElementById("cnpj");
 
@@ -17,11 +17,14 @@ function validarSessao() {
         document.getElementById('b_usuario').removeAttribute('href');
         b_usuario.style.cursor = "default";
         b_usuario.style.userSelect = "none";
-        
-        botaoDashboard.style.visibility = "visible";
-    
+
+        botaoDashboard.style.display = "flex";
+
         loginUsuario.style.display = "none";
 
+        if (email == 'n3@avitrack.com' && nome == 'Admin N3') { 
+            botaoBobIA.style.display = "flex";
+        }
 
         console.log(`
             Validou sessão com: \n

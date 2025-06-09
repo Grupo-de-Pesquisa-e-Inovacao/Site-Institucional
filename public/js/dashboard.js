@@ -1,11 +1,12 @@
-// Validação de Usuário
+// const { default: Annotation } = require("chartjs-plugin-annotation");
+
 // sessão
 function validarSessao() {
     var email = sessionStorage.EMAIL_PESSOA_JURIDICA;
     var nome = sessionStorage.RAZAO_PESSOA_JURIDICA;
     var cnpj = sessionStorage.CNPJ_PESSOA_JURIDICA;
 
-    var b_usuario = document.getElementById("b_usuario");
+    // var b_usuario = document.getElementById("b_usuario");
     // var loginUsuario = document.getElementById("botaoLogin");
     // var botaoDashboard = document.getElementById("botaoDashboard");
 
@@ -13,15 +14,16 @@ function validarSessao() {
 
 
     if (email != null && nome != null) {
-        // b_usuario.innerHTML = `Olá, ${nome}!`;
+        //     b_usuario.innerHTML = `Olá, ${nome}!`;
 
-        // document.getElementById('b_usuario').removeAttribute('href');
-        // b_usuario.style.cursor = "default";
-        // b_usuario.style.userSelect = "none";
+        //     document.getElementById('b_usuario').removeAttribute('href');
+        //     b_usuario.style.cursor = "default";
+        //     b_usuario.style.userSelect = "none";
 
-        // // botaoDashboard.style.visibility = "visible";
+        //     botaoDashboard.style.visibility = "visible";
 
-        // loginUsuario.style.display = "none";
+        //     loginUsuario.style.display = "none";
+
 
         console.log(`
             Validou sessão com: \n
@@ -34,6 +36,10 @@ function validarSessao() {
     }
 }
 
+function sairSessao() {
+    sessionStorage.clear();
+    window.location = "./Login.html";
+}
 
 
 let medicao1 = [];
@@ -63,32 +69,110 @@ function plotarDadosTemperaturaAviario() {
             datasets: [{
                 label: 'Setor 1',
                 data: medicao1,
+                borderWidth: 4,
                 borderColor: 'blue',
-                fill: false,
-                tension: 0.1
+                fill: true,
+                tension: 0.3,
+                pointRadius: 5,
+                pointBackgroundColor: '#000',
+                pointBorderColor: 'blue',
+                pointStyle: 'rectRounded',
+
+                barPercentage: 0.7,
+                categoryPercentage: 0.7
             },
             {
                 label: 'Setor 2',
                 data: medicao2,
+                borderWidth: 4,
                 borderColor: 'red',
-                fill: false,
-                tension: 0.1
+                fill: true,
+                tension: 0.3,
+                pointRadius: 5,
+                pointBackgroundColor: '#000',
+                pointBorderColor: 'red',
+                pointStyle: 'rectRounded',
+
+                barPercentage: 0.7,
+                categoryPercentage: 0.7
             },
             {
                 label: 'Setor 3',
                 data: medicao3,
+                borderWidth: 4,
+                borderColor: 'green',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 5,
+                pointBackgroundColor: '#000',
+                pointBorderColor: 'green',
+                pointStyle: 'rectRounded',
+
+                barPercentage: 0.7,
+                categoryPercentage: 0.7
+            },
+            {
+                label: 'Quartis 1',
+                data: [20, 20, 20, 20, 20, 20, 20],
+                borderWidth: 4,
+                borderColor: 'red',
+                fill: false,
+                tension: 0.3,
+                pointRadius: 0,
+                pointBackgroundColor: '#000',
+                pointBorderColor: 'orange',
+                pointStyle: 'rectRounded',
+
+                borderDash: [10, 10],
+
+                barPercentage: 0.7,
+                categoryPercentage: 0.7
+            },
+            {
+                label: 'Quartis 2',
+                data: [24, 24, 24, 24, 24, 24, 24],
+                borderWidth: 4,
                 borderColor: 'green',
                 fill: false,
-                tension: 0.1
-            }],
+                tension: 0.3,
+                pointRadius: 0,
+                pointBackgroundColor: '#000',
+                pointBorderColor: 'orange',
+                pointStyle: 'rectRounded',
+
+                borderDash: [10, 10],
+
+                barPercentage: 0.7,
+                categoryPercentage: 0.7
+            },
+            {
+                label: 'Quartis 3',
+                data: [29, 29, 29, 29, 29, 29, 29],
+                borderWidth: 4,
+                borderColor: 'red',
+                fill: false,
+                tension: 0.3,
+                pointRadius: 0,
+                pointBackgroundColor: '#000',
+                pointBorderColor: 'orange',
+                pointStyle: 'rectRounded',
+
+                borderDash: [10, 10],
+
+                barPercentage: 0.7,
+                categoryPercentage: 0.7
+            }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: 20
+            },
             plugins: {
                 title: {
                     display: true,
-                    text: 'Registro de Temperatura ºC por Hora',
+                    text: 'Relatório de Temperatura',
                     font: {
                         family: 'Poppins',
                         size: 30,
@@ -101,25 +185,35 @@ function plotarDadosTemperaturaAviario() {
                 tooltip: {
                     bodyFont: {
                         family: 'Poppins',
-                        size: 20
+                        size: 10
                     }
                 }
             },
 
             scales: {
                 x: {
+                    title: {
+                        display: true,
+                        text: 'Data'
+                    },
                     ticks: {
+                        color: 'lightgray',
                         font: {
-                            family: 'Poppins',
-                            size: 20
+                            size: 12,
+                            weight: 'bold'
                         }
                     }
                 },
                 y: {
+                    title: {
+                        display: true,
+                        text: 'Temperatura'
+                    },
                     ticks: {
+                        stepSize: 0,
                         font: {
                             family: 'Poppins',
-                            size: 20
+                            size: 10
                         }
                     }
                 }
@@ -154,12 +248,12 @@ function buscarDadosSetor() {
                     temperatura = resposta[i].Temperatura;
                     dataRegistro = resposta[i].DtRegistro;
 
-                    let numAleatorio = (Math.random() * 1.5)
-                    let numAleatorio2 = (Math.random() * 1.5)
+                    let numAleatorio = (Math.random() * 1.2)
+                    let numAleatorio2 = (Math.random() * 1.2)
 
-                    medicao1.push(temperatura);
-                    medicao2.push(Number(temperatura) + Number(numAleatorio));
-                    medicao3.push(temperatura - numAleatorio2);
+                    medicao1.push(Math.floor(temperatura));
+                    medicao2.push(Math.floor(Number(temperatura) + Number(numAleatorio)));
+                    medicao3.push(Math.floor(temperatura - numAleatorio2));
                     dtRegistro.push(dataRegistro);
 
                     if (medicao1.length > 1) {
@@ -179,35 +273,116 @@ function buscarDadosSetor() {
                     console.log(`${temperatura} \n`)
                 }
 
-                temperatura1 = Math.floor(temperatura - 0);
-                temperatura2 = Math.floor(temperatura * 1.1);
-                temperatura3 = Math.floor(temperatura - 2.34);
+                temperatura1 = Math.floor(medicao1[medicao1.length - 1]);
+                temperatura2 = Math.floor(medicao2[medicao2.length - 1]);
+                temperatura3 = Math.floor(medicao3[medicao3.length - 1]);
+
 
                 // KPI 1
-                if (temperatura1 < 21 || temperatura1 > 26) {
-                    temperaturaAviario1.style.color = "red";
-                } else {
+                if (temperatura1 >= 20 && temperatura1 <= 26) {
                     temperaturaAviario1.style.color = "green";
+                    indicador1.style.border = "1px solid green";
+
+                } else if ((temperatura1 >= 18 && temperatura1 < 20) || (temperatura1 > 26 && temperatura1 <= 29)) {
+                    temperaturaAviario1.style.color = "orange";
+                    indicador1.style.border = "1px solid orange";
+
+                } else if (temperatura1 > 29 || temperatura1 < 18) {
+                    temperaturaAviario1.style.color = "red";
+                    indicador1.style.border = "1px solid red";
+
+                    Swal.fire({
+                        backdrop: true,
+                        icon: "warning",
+                        title: "Atenção",
+                        text: "O Setor 1 está com a temperatura acima do ideal!",
+                        background: "#222",
+                        color: '#fff',
+                        confirmButtonText: 'Ok!',
+                        confirmButtonColor: '#fff45c',
+                        customClass: {
+                            confirmButton: 'meu-botao-confirmar'
+                        },
+                        footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Dashboard do Setor
+                        }
+                    });
+
                 }
 
                 // KPI 2
-                if (temperatura2 < 21 || temperatura2 > 26) {
-                    temperaturaAviario2.style.color = "red";
-                } else {
+                if (temperatura2 >= 20 && temperatura2 <= 26) {
                     temperaturaAviario2.style.color = "green";
+                    indicador2.style.border = "1px solid green";
+
+                } else if ((temperatura2 >= 18 && temperatura2 < 20) || (temperatura2 > 26 && temperatura2 <= 29)) {
+                    temperaturaAviario2.style.color = "orange";
+                    indicador2.style.border = "1px solid orange";
+
+                } else if (temperatura2 > 29 || temperatura2 < 18) {
+                    temperaturaAviario2.style.color = "red";
+                    indicador2.style.border = "1px solid red";
+
+                    Swal.fire({
+                        backdrop: true,
+                        icon: "warning",
+                        title: "Atenção",
+                        text: "O Setor 2 está com a temperatura acima do ideal!",
+                        background: "#222",
+                        color: '#fff',
+                        confirmButtonText: 'Ok!',
+                        confirmButtonColor: '#fff45c',
+                        customClass: {
+                            confirmButton: 'meu-botao-confirmar'
+                        },
+                        footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Dashboard do Setor
+                        }
+                    });
                 }
 
                 // KPI 3
-                if (temperatura3 < 21 || temperatura3 > 26) {
-                    temperaturaAviario3.style.color = "red";
-                } else {
+                if (temperatura3 >= 20 && temperatura3 <= 26) {
                     temperaturaAviario3.style.color = "green";
+                    indicador3.style.border = "1px solid green";
+                } else if ((temperatura3 >= 18 && temperatura3 < 20) || (temperatura3 > 26 && temperatura3 <= 29)) {
+                    temperaturaAviario3.style.color = "orange";
+                    indicador3.style.border = "1px solid orange";
+
+                } else if (temperatura3 > 29 || temperatura3 < 18) {
+                    temperaturaAviario3.style.color = "red";
+                    indicador3.style.border = "1px solid red";
+
+                    Swal.fire({
+                        backdrop: true,
+                        icon: "warning",
+                        title: "Atenção",
+                        text: "O Setor 3 está com a temperatura acima do ideal!",
+                        background: "#222",
+                        color: '#fff',
+                        confirmButtonText: 'Ok!',
+                        confirmButtonColor: '#fff45c',
+                        customClass: {
+                            confirmButton: 'meu-botao-confirmar'
+                        },
+                        footer: '<a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" style="color: #fff; text-decoration: underline;">Esta com problemas?</a>'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Dashboard do Setor
+                        }
+                    });
                 }
 
+
+
+                // Plotando dados nas KPI's
                 temperaturaAviario1.innerHTML = `${temperatura1}<span style="color: white;">°C</span>`;
                 temperaturaAviario2.innerHTML = `${temperatura2}<span style="color: white;">°C</span>`;
                 temperaturaAviario3.innerHTML = `${temperatura3}<span style="color: white;">°C</span>`;
-
 
                 atualizarDados();
             })

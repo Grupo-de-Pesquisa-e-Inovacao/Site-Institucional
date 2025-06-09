@@ -13,12 +13,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <link rel="shortcut icon" href="../Imagens/logoGalinha.png" type="image/x-icon">
 
     <title>AviTrack | Dashboard</title>
 
 
-    <script src="./js/alerta.js"></script>
 </head>
 
 <body onload="validarSessao(), buscarDadosSetor(), plotarDadosTemperaturaAviario()">
@@ -26,7 +28,6 @@
     <div class="menuLateral">
         <div id="textoPainel"></div>
         <a href="index.html" class="botao">Inicio</a>
-        <a href="quiz.html" class="botao">Quiz</a>
         <a href="https://sptech-team-s3x9skg4.atlassian.net/servicedesk/customer/portal/5" class="botao">Suporte</a>
         <a class="botao" onclick="sairSessao()">Sair do Perfil</a>
     </div>
@@ -61,10 +62,6 @@
                     <!-- Gráfico de Linha -->
                     <div id="graficos1">
                         <canvas id="graficoLinha1"></canvas>
-                    </div>
-                    <!-- Gráfico de Barras -->
-                    <div id="graficos2">
-                        <canvas id="graficoLinha2"></canvas>
                     </div>
                 </div>
             </div>

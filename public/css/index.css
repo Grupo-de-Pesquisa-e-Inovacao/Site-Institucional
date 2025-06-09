@@ -60,6 +60,7 @@ body {
 }
 
 .nav-list li a {
+  display: flex;
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
