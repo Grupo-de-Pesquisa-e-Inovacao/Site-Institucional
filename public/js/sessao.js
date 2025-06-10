@@ -18,6 +18,10 @@ function validarSessao() {
         b_usuario.style.cursor = "default";
         b_usuario.style.userSelect = "none";
 
+        botaoSair.style.cursor = "pointer";
+        botaoSair.style.userSelect = "none";
+        botaoSair.style.display = "flex";
+
         botaoDashboard.style.display = "flex";
 
         loginUsuario.style.display = "none";

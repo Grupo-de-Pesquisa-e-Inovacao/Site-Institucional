@@ -85,7 +85,7 @@
                     <!-- Botão para revelar a senha -->
                     <button type="button" id="i_buttonEyeSenha" onclick="exibirSenha()" tabindex="-1">
                         <div id="iconeEyes">
-                            <i class="fa fa-eye-slash" aria-hidden=" true" style="font-size: 18px;"></i>
+                            <i class="fa fa-eye" aria-hidden="true"></i>
                         </div>
                     </button>
                     <input type="password" id="i_senhaCadastro" oninput="validarSenha()" required autocomplete="off">
@@ -107,7 +107,7 @@
                     <!-- Botão para revelar a senha -->
                     <button type="button" id="i_buttonEyeConfSenha" onclick="exibirConfSenha()" tabindex="-1">
                         <div id="iconeEyes">
-                            <i class="fa fa-eye-slash" aria-hidden=" true" style="font-size: 18px;"></i>
+                            <i class="fa fa-eye" aria-hidden="true"></i>
                         </div>
                     </button>
                     <input type="password" id="i_confirmacaoSenhaCadastro" required autocomplete="off">
@@ -217,20 +217,20 @@
     function exibirSenha() {
         if (i_senhaCadastro.type == "password") {
             i_senhaCadastro.type = "text";
-            i_buttonEyeSenha.innerHTML = `<i class="fa fa-eye" aria-hidden="true" style="color: #fff45c"></i>`;
+            i_buttonEyeSenha.innerHTML = `<i class="fa fa-eye-slash" aria-hidden=" true"style="font-size: 18px; color: #fff45c"></i>`;
         } else {
             i_senhaCadastro.type = "password";
-            i_buttonEyeSenha.innerHTML = `<i class="fa fa-eye-slash" aria-hidden=" true"style="font-size: 18px;"></i>`;
+            i_buttonEyeSenha.innerHTML = `<i class="fa fa-eye" aria-hidden="true"></i>`;
         }
     }
     // Função para exibir a senha do campo de Confirmação de Senha    
     function exibirConfSenha() {
         if (i_confirmacaoSenhaCadastro.type == "password") {
             i_confirmacaoSenhaCadastro.type = "text";
-            i_buttonEyeConfSenha.innerHTML = `<i class="fa fa-eye" aria-hidden="true" style="color: #fff45c"></i>`;
+            i_buttonEyeConfSenha.innerHTML = `<i class="fa fa-eye-slash" aria-hidden="true" style="font-size: 18px; color: #fff45c;"></i>`;
         } else {
             i_confirmacaoSenhaCadastro.type = "password";
-            i_buttonEyeConfSenha.innerHTML = `<i class="fa fa-eye-slash" aria-hidden="true" style="font-size: 18px;"></i>`;
+            i_buttonEyeConfSenha.innerHTML = `<i class="fa fa-eye" aria-hidden="true"></i>`;
         }
     }
 

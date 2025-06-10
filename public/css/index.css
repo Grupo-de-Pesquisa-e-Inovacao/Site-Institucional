@@ -31,13 +31,19 @@ body {
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 30px;
   border-bottom: 1px solid var(--amarelo);
+}
+
+.logo {
+    width: 266.52px;
 }
 
 
 .logo img {
   height: 70px;
+
 }
 
 .nav-list {
@@ -49,8 +55,8 @@ body {
 }
 
 .center-links {
-  flex: 1;
-  justify-content: center;
+  /* flex: 1; */
+  /* justify-content: center;  */
   display: flex;
 }
 
@@ -74,6 +80,10 @@ body {
   background-color: var(--amarelo);
   color: black;
     transform: scale(1.1);
+}
+
+#botaoSair {
+  display: none;
 }
 
 .conteudoinicial {

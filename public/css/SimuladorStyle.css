@@ -20,19 +20,30 @@ body {
 
 /* Header */
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: black;
-  border-bottom: solid 0.5px var(--amarelo);
+  z-index: 1000;
 }
+
 
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 30px;
+  border-bottom: 1px solid var(--amarelo);
 }
 
+.logo {
+    width: 326.52px;
+}
 
 .logo img {
   height: 70px;
+
 }
 
 .nav-list {
@@ -44,29 +55,18 @@ body {
 }
 
 .center-links {
-  flex: 1;
-  justify-content: center;
+  /* flex: 1; */
+  /* justify-content: center;  */
   display: flex;
 }
 
-.imgnav-perfil img {
-  width: 40px;  
+.right-links {
   display: flex;
   justify-content: flex-end;
-  padding: 0;
-}
-
-.imgnav-exit {
-  width: 0;
-  height: 30px;  
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 0;
-  padding: 20;
-
 }
 
 .nav-list li a {
+  display: flex;
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
@@ -79,6 +79,11 @@ body {
 .nav-list li a:hover {
   background-color: var(--amarelo);
   color: black;
+  transform: scale(1.1);
+}
+
+#botaoSair {
+  display: none;
 }
 
 
@@ -86,144 +91,146 @@ body {
 
 /* Div Container */
 .divContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 50px;
-    height: fit-content;
-    width: 100%;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  height: fit-content;
+  width: 100%;
 }
 
 /* Div Conteudo */
 .divConteudo {
-    display: block;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: fit-content;
-    background-color: var(--cinza);
-    border: 2px solid var(--amarelo);
-    border-radius: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-    width: 90%;
-    padding: 20px;
-    height: 300px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  display: block;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  background-color: var(--cinza);
+  border: 2px solid var(--amarelo);
+  border-radius: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 90%;
+  padding: 20px;
+  height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
+
 /* Título "Simulador Financeiro" */
 #divTitulo {
-    display: flex;
-    flex-direction: center;
-    justify-content: center;
-    align-self: center;
-    color: var(--amarelo);
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-self: center;
+  color: var(--amarelo);
 }
 
 .divConteudo2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: fit-content;
-    margin-left: 50px;
-    margin-right: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .divContainer input {
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
 }
 
 /* Estilização dos Inputs */
 /* Input's */
 input {
-    position: absolute;
-    width: 250px;
-    font-size: 17px;
-    outline: none;
-    padding: 0 30px;
-    line-height: 80px;
-    border-radius: 50px;
-    border: 2px solid #888;
-    background: transparent;
-    transition: 0.1s ease;
-    z-index: 1111;
+  position: absolute;
+  width: 250px;
+  font-size: 17px;
+  outline: none;
+  padding: 0 30px;
+  line-height: 80px;
+  border-radius: 50px;
+  border: 2px solid #888;
+  background: transparent;
+  transition: 0.1s ease;
+  z-index: 1111;
 }
 
 .div_campos {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    height: 50px;
-    margin-bottom: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  margin-bottom: 50px;
 }
 
 .textoInput {
-    position: absolute;
-    white-space: nowrap;
-    font-size: 17px;
-    font-weight: bold;
-    color: #888;
-    line-height: 80px;
-    background-color: var(--cinzaEscuro);
-    border-radius: 20px;
-    transition: 0.2s ease;
+  position: absolute;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: bold;
+  color: #888;
+  line-height: 80px;
+  background-color: var(--cinzaEscuro);
+  border-radius: 20px;
+  transition: 0.2s ease;
 }
 
 /* Espaçamento do campo de senha e das informações necessárias para inserir uma senha válida */
 #div_campoSenha {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 /* Validação de Senha */
 #div_validarSenha {
-    width: 350px;
-    color: #888;
-    font-size: 12px;
-    margin-bottom: 20px;
+  width: 350px;
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 20px;
 }
 
 /* Ao clicar, as bordas dos input's ficarão amarelas */
 input:focus,
 input:valid {
-    color: var(--amarelo);
-    border: 2px solid var(--amarelo);
+  color: var(--amarelo);
+  border: 2px solid var(--amarelo);
 }
 
 /* Ao inserir um texto valido, a borda permanece amarela */
 input:focus+.textoInput,
 input:valid+.textoInput {
-    color: var(--amarelo);
-    height: 30px;
-    line-height: 30px;
-    padding: 0 12px;
-    transform: translate(0, -16px) scale(0.88);
-    z-index: 1111;
+  color: var(--amarelo);
+  height: 30px;
+  line-height: 30px;
+  padding: 0 12px;
+  transform: translate(0, -16px) scale(0.88);
+  z-index: 1111;
 }
 
 /* Para remover as setas do input do tipo número */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Espaçamento do icone pro texto da input */
 i {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 
 
 /* Texto dos inputs */
 p {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: var(--amarelo);
-    font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--amarelo);
+  font-size: 20px;
 }
 
 
@@ -231,34 +238,34 @@ p {
 
 /* Posição do Botão */
 .divContainer button {
-    display: auto;
-    flex-direction: auto;
-    justify-content: center;
-    align-self: center;
+  display: auto;
+  flex-direction: auto;
+  justify-content: center;
+  align-self: center;
 }
 
 /* Estilização do Botão */
 button {
-    color: var(--amarelo);
-    height: 60px;
-    width: 200px;
-    border-radius: 30px;
-    border: 2px solid var(--amarelo);
-    background-color: var(--offWhite);
-    transition: transform 0.5 s ease;
-    will-change: transform;
-    backface-visibility: hidden;
-    margin: 30px;
-    font-weight: bold;
-    font-size: 15px;
+  color: var(--amarelo);
+  height: 60px;
+  width: 200px;
+  border-radius: 30px;
+  border: 2px solid var(--amarelo);
+  background-color: var(--offWhite);
+  transition: transform 0.5 s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+  margin: 30px;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 /* Animação do Botão */
 button:hover {
-    transform: scale(1.05);
-    background-color: var(--amarelo);
-    color: var(--azulEscuro);
-    border: 2px solid var(--azulEscuro);
+  transform: scale(1.05);
+  background-color: var(--amarelo);
+  color: var(--azulEscuro);
+  border: 2px solid var(--azulEscuro);
 }
 
 
@@ -267,34 +274,34 @@ button:hover {
 
 /* Resultados */
 .divResultados {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
 }
 
 .divMensagem {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color: var(--cinza);
-    color: var(--amarelo);
-    width: 500px;
-    margin: 20px;
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    /* border: 2px solid var(--amarelo); */
-    box-shadow: inset 0 0 0 2px var(--amarelo);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--cinza);
+  color: var(--amarelo);
+  width: 500px;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  /* border: 2px solid var(--amarelo); */
+  box-shadow: inset 0 0 0 2px var(--amarelo);
 }
 
 .divMensagem p {
-    padding-left: 50px;
-    padding-right: 50px;
-    font-size: 17px;
-    color: var(--branco);
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 17px;
+  color: var(--branco);
 }
 
 .divTituloResultados {
-    color: var(--amarelo);
-    margin-bottom: 10px;
+  color: var(--amarelo);
+  margin-bottom: 10px;
 }
