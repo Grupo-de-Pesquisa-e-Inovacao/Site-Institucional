@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="./css/styleBobIA.css">
 </head>
-
+    <div id="container">
 <body onload="validarSessao()">
     <div class="header">
         <div class="navbar">
@@ -27,9 +27,10 @@
                 <li><a onclick="limparSessao()" id="botaoSair">Sair da Conta</a></li>
             </ul>
         </div>
-    </div>
+    
 
-    <div id="container">
+
+        <div class="container">
         <div class="logotipo"><img src="./Imagens/Avitrack Logotipo.png" alt="Avitrack"></div>
         <h1>BobIA</h1>
         <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
@@ -38,10 +39,11 @@
         <h3>Resposta da IA:</h3>
         <div id="resposta"></div>
     </div>
+    </div>
+    </div>
 </body>
 
 </html>
-
 <script>
     function validarSessao() {
         var email = sessionStorage.EMAIL_PESSOA_JURIDICA;
