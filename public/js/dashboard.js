@@ -48,8 +48,12 @@ let medicao3 = [];
 
 let dtRegistro = [];
 
+let regSetor1 = 0;
+let regSetoe2 = 0;
+let regSetor3 = 0;
 
-let myChart;
+let myChart1;
+let myChart2;
 
 // Função da plotagem
 function plotarDadosTemperaturaAviario() {
@@ -61,7 +65,7 @@ function plotarDadosTemperaturaAviario() {
     Chart.defaults.color = '#fff';
     Chart.defaults.borderColor = '#333';
 
-    myChart = new Chart(ctx, {
+    myChart1 = new Chart(ctx, {
 
         type: 'line',
         data: {
@@ -257,9 +261,9 @@ function buscarDadosSetor() {
                     dtRegistro.push(dataRegistro);
 
                     if (medicao1.length > 1) {
-                        console.log('myChart antes do update:', myChart);
+                        console.log('myChart antes do update:', myChart1);
 
-                        myChart.update();
+                        myChart1.update();
                     }
 
 
@@ -286,10 +290,11 @@ function buscarDadosSetor() {
                 } else if ((temperatura1 >= 18 && temperatura1 < 20) || (temperatura1 > 26 && temperatura1 <= 29)) {
                     temperaturaAviario1.style.color = "orange";
                     indicador1.style.border = "1px solid orange";
-
+                    
                 } else if (temperatura1 > 29 || temperatura1 < 18) {
                     temperaturaAviario1.style.color = "red";
                     indicador1.style.border = "1px solid red";
+                    regSetor1++;
 
                     Swal.fire({
                         backdrop: true,
@@ -320,10 +325,11 @@ function buscarDadosSetor() {
                 } else if ((temperatura2 >= 18 && temperatura2 < 20) || (temperatura2 > 26 && temperatura2 <= 29)) {
                     temperaturaAviario2.style.color = "orange";
                     indicador2.style.border = "1px solid orange";
-
+                    
                 } else if (temperatura2 > 29 || temperatura2 < 18) {
                     temperaturaAviario2.style.color = "red";
                     indicador2.style.border = "1px solid red";
+                    regSetoe2++;
 
                     Swal.fire({
                         backdrop: true,
@@ -356,6 +362,7 @@ function buscarDadosSetor() {
                 } else if (temperatura3 > 29 || temperatura3 < 18) {
                     temperaturaAviario3.style.color = "red";
                     indicador3.style.border = "1px solid red";
+                    regSetor3++;
 
                     Swal.fire({
                         backdrop: true,
