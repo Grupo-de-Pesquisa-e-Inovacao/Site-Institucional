@@ -175,7 +175,7 @@ function plotarDadosTemperaturaAviario() {
                 x: {
                     title: {
                         display: true,
-                        text: 'Data'
+                        text: 'Horário'
                     },
                     ticks: {
                         color: 'lightgray',
@@ -260,15 +260,15 @@ function buscarDadosSetor() {
 
 
                 // KPI 1
-                if (temperatura1 >= 20 && temperatura1 <= 26) {
+                if (temperatura1 > 20 && temperatura1 < 26) {
                     temperaturaAviario1.style.color = "green";
                     indicador1.style.border = "1px solid green";
 
-                } else if ((temperatura1 >= 18 && temperatura1 < 20) || (temperatura1 > 26 && temperatura1 <= 29)) {
+                } else if (temperatura1 == 20 || temperatura1 == 26) {
                     temperaturaAviario1.style.color = "orange";
                     indicador1.style.border = "1px solid orange";
                     
-                } else if (temperatura1 > 29 || temperatura1 < 18) {
+                } else if (temperatura1 < 20 || temperatura1 > 26) {
                     temperaturaAviario1.style.color = "red";
                     indicador1.style.border = "1px solid red";
                     regSetor1++;
@@ -295,15 +295,15 @@ function buscarDadosSetor() {
                 }
 
                 // KPI 2
-                if (temperatura2 >= 20 && temperatura2 <= 26) {
+                if (temperatura2 > 20 && temperatura2 < 26) {
                     temperaturaAviario2.style.color = "green";
                     indicador2.style.border = "1px solid green";
 
-                } else if ((temperatura2 >= 18 && temperatura2 < 20) || (temperatura2 > 26 && temperatura2 <= 29)) {
+                } else if (temperatura2 == 20 || temperatura2 == 26) {
                     temperaturaAviario2.style.color = "orange";
                     indicador2.style.border = "1px solid orange";
                     
-                } else if (temperatura2 > 29 || temperatura2 < 18) {
+                } else if (temperatura2 < 20 || temperatura2 > 26) {
                     temperaturaAviario2.style.color = "red";
                     indicador2.style.border = "1px solid red";
                     regSetoe2++;
@@ -329,14 +329,14 @@ function buscarDadosSetor() {
                 }
 
                 // KPI 3
-                if (temperatura3 >= 20 && temperatura3 <= 26) {
+                if (temperatura3 > 20 && temperatura3 < 26) {
                     temperaturaAviario3.style.color = "green";
                     indicador3.style.border = "1px solid green";
-                } else if ((temperatura3 >= 18 && temperatura3 < 20) || (temperatura3 > 26 && temperatura3 <= 29)) {
+                } else if (temperatura3 == 20 || temperatura3 == 26) {
                     temperaturaAviario3.style.color = "orange";
                     indicador3.style.border = "1px solid orange";
 
-                } else if (temperatura3 > 29 || temperatura3 < 18) {
+                } else if (temperatura3 < 20 || temperatura3 > 26) {
                     temperaturaAviario3.style.color = "red";
                     indicador3.style.border = "1px solid red";
                     regSetor3++;
@@ -360,8 +360,6 @@ function buscarDadosSetor() {
                         }
                     });
                 }
-
-
 
                 // Plotando dados nas KPI's
                 temperaturaAviario1.innerHTML = `${temperatura1}<span style="color: white;">°C</span>`;

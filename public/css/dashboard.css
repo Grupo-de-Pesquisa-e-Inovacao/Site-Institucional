@@ -29,7 +29,6 @@ body {
     height: 100%;
     background-color: var(--cinzaEscuro);
     border-right: 1px solid var(--amarelo);
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,7 +52,6 @@ body.swal2-height-auto {
 /* Estilização do Painel Lateral */
 #textoPainel {
     width: 100%;
-
     text-align: center;
     padding: 20px 0 20px 0;
     font-size: 35px;
@@ -65,19 +63,19 @@ body.swal2-height-auto {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
-    font-size: 35px;
+    font-size: 25px;
     height: 100px;
     width: 100%;
-    text-align: center;
     text-decoration: none;
     color: #fff;
     border-bottom: 2px solid #222;
+    cursor: pointer;
 }
 
 .botao:hover {
-    background-color: #444;
+    background-color: #e4c020;
+    color: #080808;
+    transition: background-color 0.9s;
 }
 
 /* Indicadores */
@@ -192,6 +190,7 @@ body.swal2-height-auto {
     background-color: #222;
     border: 1px solid var(--amarelo);
 }
+
 
 .meu-botao-confirmar {
     color: #222;
