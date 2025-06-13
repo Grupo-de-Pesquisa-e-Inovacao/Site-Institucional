@@ -48,12 +48,7 @@ let medicao3 = [];
 
 let dtRegistro = [];
 
-let regSetor1 = 0;
-let regSetoe2 = 0;
-let regSetor3 = 0;
-
 let myChart1;
-let myChart2;
 
 // Função da plotagem
 function plotarDadosTemperaturaAviario() {
@@ -134,7 +129,7 @@ function plotarDadosTemperaturaAviario() {
             },
             {
                 label: 'Quartis 2',
-                data: [24, 24, 24, 24, 24, 24, 24],
+                data: [23, 23, 23, 23, 23, 23, 23],
                 borderWidth: 4,
                 borderColor: 'green',
                 fill: false,
@@ -151,7 +146,7 @@ function plotarDadosTemperaturaAviario() {
             },
             {
                 label: 'Quartis 3',
-                data: [29, 29, 29, 29, 29, 29, 29],
+                data: [26, 26, 26, 26, 26, 26, 26],
                 borderWidth: 4,
                 borderColor: 'red',
                 fill: false,
@@ -300,7 +295,7 @@ function buscarDadosSetor() {
                         backdrop: true,
                         icon: "warning",
                         title: "Atenção",
-                        text: "O Setor 1 está com a temperatura acima do ideal!",
+                        text: "O Setor 1 está com a temperatura fora do ideal!",
                         background: "#222",
                         color: '#fff',
                         confirmButtonText: 'Ok!',
@@ -335,7 +330,7 @@ function buscarDadosSetor() {
                         backdrop: true,
                         icon: "warning",
                         title: "Atenção",
-                        text: "O Setor 2 está com a temperatura acima do ideal!",
+                        text: "O Setor 2 está com a temperatura fora do ideal!",
                         background: "#222",
                         color: '#fff',
                         confirmButtonText: 'Ok!',
@@ -368,7 +363,7 @@ function buscarDadosSetor() {
                         backdrop: true,
                         icon: "warning",
                         title: "Atenção",
-                        text: "O Setor 3 está com a temperatura acima do ideal!",
+                        text: "O Setor 3 está com a temperatura fora do ideal!",
                         background: "#222",
                         color: '#fff',
                         confirmButtonText: 'Ok!',
