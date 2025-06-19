@@ -271,7 +271,6 @@ function buscarDadosSetor() {
                 } else if (temperatura1 < 20 || temperatura1 > 26) {
                     temperaturaAviario1.style.color = "red";
                     indicador1.style.border = "1px solid red";
-                    regSetor1++;
 
                     Swal.fire({
                         backdrop: true,
@@ -306,7 +305,6 @@ function buscarDadosSetor() {
                 } else if (temperatura2 < 20 || temperatura2 > 26) {
                     temperaturaAviario2.style.color = "red";
                     indicador2.style.border = "1px solid red";
-                    regSetoe2++;
 
                     Swal.fire({
                         backdrop: true,
@@ -339,7 +337,6 @@ function buscarDadosSetor() {
                 } else if (temperatura3 < 20 || temperatura3 > 26) {
                     temperaturaAviario3.style.color = "red";
                     indicador3.style.border = "1px solid red";
-                    regSetor3++;
 
                     Swal.fire({
                         backdrop: true,
@@ -388,5 +385,3 @@ function buscarDadosSetor() {
 function atualizarDados() {
     setTimeout(buscarDadosSetor, 5000);
 }
-
-
